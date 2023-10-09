@@ -11,7 +11,7 @@ url = "google.pl"
 st.button("Click me")
 st.download_button("Download file", data)
 st.link_button("Go to gallery", url)
-#st.data_editor("Edit data", data)
+st.data_editor("Edit data", data)
 #st.checkbox("I agree")
 #st.toggle("Enable")
 #st.radio("Pick one", ["cats", "dogs"])

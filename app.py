@@ -1,16 +1,17 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-
-st.title('Twitter Tool')
-df = st.file_uploader("Upload a CSV")
-
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 from matplotlib import style
 from matplotlib.font_manager import FontProperties
 from datetime import date, timedelta
 import pandas as pd 
+
+
+st.title('Twitter Tool')
+df = st.file_uploader("Upload a CSV")
+
 
 
 font = FontProperties()

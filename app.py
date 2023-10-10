@@ -8,7 +8,7 @@ import pandas as pd
 st.title('Twitter Tool')
 df = st.file_uploader("Upload a CSV")
 st.dataframe(df)
-
+st.text(df.columns)
 
 today = date.today()
 

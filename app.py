@@ -8,10 +8,10 @@ import pandas as pd
 st.title('Twitter Tool')
 df = st.file_uploader("Upload a CSV")
 st.dataframe(df)
-st.text(df.columns)
+st.text("df.columns")
 
 today = date.today()
-
+st.text(today)
 
 df['Date'] = pd.to_datetime(df['Date']).dt.date
 end_date = today - timedelta(days = 1)

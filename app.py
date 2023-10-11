@@ -1,24 +1,19 @@
+from datetime import date, timedelta
+import pandas as pd 
 import streamlit as st
 import pandas as pd
 import numpy as np
-from datetime import date, timedelta
-import pandas as pd 
 
 
 st.title('Twitter Tool')
-import streamlit as st
-import pandas as pd
-import numpy as np
 
-df = pd.DataFrame(np.random.randn(10, 5), columns=("col %d" % i for i in range(5)))
 
-st.table(df)
 uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
     bytes_data = uploaded_file.read()
     st.write("filename:", uploaded_file.name)
     uploaded_file = df
-    st.dataframe(df)
+    st.table(df)
     today = date.today()
     st.text(today)
     st.text(str(df.columns))

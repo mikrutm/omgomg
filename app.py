@@ -18,7 +18,7 @@ next_year = today.year
 
 d = st.date_input(
     "Select your vacation for next year",(start_date,end_date),
-    format="MM.DD.YYYY",
+    format="YYYY.MM.DD",
 )
 
 
@@ -28,6 +28,7 @@ if uploaded_file:
     today = date.today()
     st.text(today)
     df=pd.read_csv(uploaded_file)
+ 
     df['Date'] = pd.to_datetime(df['Date']).dt.date
 
     mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  

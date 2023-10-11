@@ -14,8 +14,7 @@ if uploaded_file:
     today = date.today()
     st.text(today)
     df=pd.read_csv(uploaded_file)
-    st.table(df)
-"""
+    
     df['Date'] = pd.to_datetime(df['Date']).dt.date
     end_date = today - timedelta(days = 1)
 
@@ -35,6 +34,6 @@ if uploaded_file:
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     st.dataframe(df)
 
-"""
+
 
 

@@ -8,15 +8,11 @@ import datetime
 st.title('Twitter Tool')
 
 today = datetime.datetime.now()
-next_year = today.year + 1
-jan_1 = datetime.date(next_year, 1, 1)
-dec_31 = datetime.date(next_year, 12, 31)
+end_date = today - timedelta(days = 1)
+start_date = today - timedelta(days =7)
 
 d = st.date_input(
-    "Select your vacation for next year",
-    (jan_1, datetime.date(next_year, 1, 7)),
-    jan_1,
-    dec_31,
+    "Podaj okres: ",
     format="MM.DD.YYYY",
 )
 
@@ -28,8 +24,6 @@ if uploaded_file:
     st.text(today)
     df=pd.read_csv(uploaded_file)
     df['Date'] = pd.to_datetime(df['Date']).dt.date
-    end_date = today - timedelta(days = 1)
-    start_date = today - timedelta(days =7)
 
     mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
     df = df[df.columns[:-1]]

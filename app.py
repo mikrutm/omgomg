@@ -10,7 +10,10 @@ st.title('Twitter Tool')
 today = datetime.datetime.now()
 jan_1 = today - timedelta(days = 1)
 dec_31 = today - timedelta(days =7)
+end_date = today - timedelta(days = 1)
+start_date = today - timedelta(days =7 )
 next_year = today.year 
+
 d = st.date_input(
     "Select your vacation for next year",
     (jan_1, datetime.date(next_year, 1, 7)),

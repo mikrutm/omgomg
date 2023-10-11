@@ -9,9 +9,6 @@ st.title('Twitter Tool')
 
 today = datetime.datetime.now()
 
-jan_1 = today - timedelta(days = 7)
-dec_31 = today - timedelta(days =1)
-
 end_date = today - timedelta(days = 1)
 start_date = today - timedelta(days =7 )
 next_year = today.year 
@@ -22,6 +19,7 @@ d = st.date_input(
 )
 start_date = d[0]
 end_date = d[1]
+
 st.text(start_date)
 st.text(end_date)
 
@@ -48,7 +46,6 @@ if uploaded_file:
     df=df.set_index("Trend")
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     st.dataframe(df)
-
-
+    st.bar_chart(data=df)
 
 

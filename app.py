@@ -8,16 +8,14 @@ import numpy as np
 st.title('Twitter Tool')
 
 
-uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
-for uploaded_file in uploaded_files:
-    bytes_data = uploaded_file.read()
+uploaded_file = st.file_uploader("Choose a CSV file")
+if uploaded_file:
     st.write("filename:", uploaded_file.name)
-    df=pd.read_csv(uploaded_file)
-    st.table(df)
     today = date.today()
     st.text(today)
-    st.text(str(df.columns))
-
+    df=pd.read_csv(uploaded_file)
+    st.table(df)
+"""
     df['Date'] = pd.to_datetime(df['Date']).dt.date
     end_date = today - timedelta(days = 1)
 
@@ -36,5 +34,7 @@ for uploaded_file in uploaded_files:
     df=df.set_index("Trend")
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     st.dataframe(df)
+
+"""
 
 

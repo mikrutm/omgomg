@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import datetime
+import plotly.express as px 
 
 st.title('Twitter Tool')
 
@@ -47,7 +48,6 @@ if uploaded_file:
     df=df.set_index("Trend")
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     st.dataframe(df)
-    import plotly.express as px 
     df=px.data.tips()
     fig=px.bar(df,x='Popindex',y='Trend', orientation='h')
     st.write(fig)

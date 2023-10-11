@@ -8,8 +8,10 @@ import datetime
 st.title('Twitter Tool')
 
 today = datetime.datetime.now()
-jan_1 = today - timedelta(days = 1)
-dec_31 = today - timedelta(days =7)
+
+jan_1 = today - timedelta(days = 7)
+dec_31 = today - timedelta(days =1)
+
 end_date = today - timedelta(days = 1)
 start_date = today - timedelta(days =7 )
 next_year = today.year 

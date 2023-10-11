@@ -13,12 +13,6 @@ end_date = today - timedelta(days = 1)
 start_date = today - timedelta(days =7 )
 next_year = today.year 
 
-d = st.date_input(
-    "Select your vacation for next year",(start_date,end_date),
-    format="YYYY.MM.DD",
-)
-start_date = d[0]
-end_date = d[1]
 
 st.text(start_date)
 st.text(end_date)
@@ -26,6 +20,13 @@ st.text(end_date)
 uploaded_file = st.file_uploader("Choose a CSV file")
 if uploaded_file:
     st.write("filename:", uploaded_file.name)       
+    d = st.date_input(
+    "Select your vacation for next year",(start_date,end_date),
+    format="YYYY.MM.DD",
+    )
+    start_date = d[0]
+    end_date = d[1]
+
     today = date.today()
     st.text(today)
     df=pd.read_csv(uploaded_file)
@@ -46,6 +47,9 @@ if uploaded_file:
     df=df.set_index("Trend")
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     st.dataframe(df)
-    st.bar_chart(data=df)
-
+    import plotly.express as px 
+    df=px.data.tips()
+    fig=px.bar(df,x='Popindex',y='Trend', orientation='h')
+    st.write(fig)
+    
 

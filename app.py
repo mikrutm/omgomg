@@ -7,11 +7,12 @@ import pandas as pd
 
 st.title('Twitter Tool')
 df = st.file_uploader("Upload a CSV")
+
 if df:
     st.dataframe(df)
-    st.text(str(df.columns))
     today = date.today()
     st.text(today)
+    st.text(str(df.columns))
 
     df['Date'] = pd.to_datetime(df['Date']).dt.date
     end_date = today - timedelta(days = 1)
@@ -21,18 +22,10 @@ if df:
     df = df[df.columns[:-1]]
     df = df.loc[mask]
     st.dataframe(df)
-
-
-    # %%
-    #end_date = today
-
-    # Group by name and calculate the sum of numbers
+    
+    st.text(str(df.columns))
     summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
-
-
-    # %%
     top=35
-
     # Rename the columns
     summary_df.columns = ['Trend', 'PopIndex']
     df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)

@@ -20,7 +20,10 @@ d = st.date_input(
     "Select your vacation for next year",(start_date,end_date),
     format="YYYY.MM.DD",
 )
-
+start_date = d[0]
+end_date = d[1]
+st.text(start_date)
+st.text(end_date)
 
 uploaded_file = st.file_uploader("Choose a CSV file")
 if uploaded_file:

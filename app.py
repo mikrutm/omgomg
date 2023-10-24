@@ -48,7 +48,7 @@ if uploaded_file:
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     df = df.sort_values(by = ["PopIndex"],ascending=False)
     st.text(str(df.columns))
-    
+    df = df.sort_values(by="PopIndex",ascending=True)
     st.dataframe(df)
     fig = px.bar(df,x="PopIndex", orientation='h') 
     st.plotly_chart(fig, theme="streamlit")

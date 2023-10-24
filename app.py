@@ -42,7 +42,7 @@ if uploaded_file:
     summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
     top=35
 
-    top = st.slider('Top :', 5, 40,1)
+    top = st.slider('Top :', 5, 40,5)
     
     
     # Rename the columns
@@ -54,6 +54,6 @@ if uploaded_file:
     st.text(str(df.columns))
     df = df.sort_values(by="PopIndex",ascending=True)
     st.dataframe(df)
-    fig = px.bar(df,x="PopIndex", orientation='h') 
+    fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}") 
     st.plotly_chart(fig, theme="streamlit")
-    
+        

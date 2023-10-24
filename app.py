@@ -39,7 +39,6 @@ if uploaded_file:
     df = df[df.columns[:-1]]
     df = df.loc[mask]
     
-    st.text(str(df.columns))
     summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
     top=35
     # Rename the columns
@@ -48,8 +47,9 @@ if uploaded_file:
     df=df.set_index("Trend")
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     df = df.sort_values(by = ["PopIndex"],ascending=False)
-    
+    st.text(str(df.columns))
+
     st.dataframe(df)
-    fig = px.bar(df,x="Trend",y="PopIndex", orientation='h') 
+    fig = px.bar(df,y="Trend",x="PopIndex", orientation='h') 
     st.plotly_chart(fig, theme="streamlit")
     

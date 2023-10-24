@@ -47,7 +47,7 @@ if uploaded_file:
     df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
     df=df.set_index("Trend")
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
-    df = df.sort_values(ascending=True)
+    df = df.sort_values(by = ["PopIndex"],ascending=True)
     st.dataframe(df)
 
     df=px.data.tips()

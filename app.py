@@ -32,28 +32,29 @@ if uploaded_file:
     today = date.today()
     st.text(today)
     df=pd.read_csv(uploaded_file)
+df=pd.read_csv("Twitter_trends(11).csv")
  
-    df['Date'] = pd.to_datetime(df['Date']).dt.date
+df['Date'] = pd.to_datetime(df['Date']).dt.date
 
-    mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
-    df = df[df.columns[:-1]]
-    df = df.loc[mask]
+mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
+df = df[df.columns[:-1]]
+df = df.loc[mask]
     
-    summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
-    top=35
+summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
+top=35
 
-    top = st.slider('Top :', 5, 40,5)
+top = st.slider('Top :', 5, 40,20)
     
     
-    # Rename the columns
-    summary_df.columns = ['Trend', 'PopIndex']
-    df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
-    df=df.set_index("Trend")
-    df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
-    df = df.sort_values(by = ["PopIndex"],ascending=False)
-    st.text(str(df.columns))
-    df = df.sort_values(by="PopIndex",ascending=True)
-    st.dataframe(df)
-    fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}") 
-    st.plotly_chart(fig, theme="streamlit")
-        
+# Rename the columns
+summary_df.columns = ['Trend', 'PopIndex']
+df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
+df=df.set_index("Trend")
+df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
+df = df.sort_values(by = ["PopIndex"],ascending=False)
+st.text(str(df.columns))
+df = df.sort_values(by="PopIndex",ascending=True)
+st.dataframe(df)
+fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}") 
+st.plotly_chart(fig, theme="streamlit")
+    

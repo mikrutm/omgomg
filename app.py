@@ -38,8 +38,6 @@ df=pd.read_csv("Twitter_trends(11).csv")
  
 df['Date'] = pd.to_datetime(df['Date']).dt.date
 st.dataframe(df)
-start_date = start_date.date()
-end_date=end_date.date()
 mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
 df = df[df.columns[:-1]]
 df = df.loc[mask]

@@ -34,9 +34,10 @@ if uploaded_file:
     df=pd.read_csv(uploaded_file)
 
 df=pd.read_csv("Twitter_trends(11).csv")
-st.dataframe(df)
+
  
-df['Date'] = pd.to_datetime(df['Date']).dt.date()
+df['Date'] = pd.to_datetime(df['Date']).dt.date
+st.dataframe(df)
 
 mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
 df = df[df.columns[:-1]]

@@ -51,7 +51,7 @@ if uploaded_file:
     
     st.dataframe(df)
     
-    fig = px.bar(df, x="PopIndex", y="Trend", orientation='h',height=400,title='Restaurant bills') 
+    fig = px.bar(df, x="PopIndex", y="Trend", orientation='h') 
     tab3 = st.tabs(["Streamlit theme (default)"]) 
     with tab3:
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)

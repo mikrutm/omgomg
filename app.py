@@ -51,5 +51,5 @@ if uploaded_file:
     
     st.dataframe(df)
     fig = px.bar(df, orientation='h') 
-    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+    st.plotly_chart(fig, theme="streamlit")
     

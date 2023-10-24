@@ -49,9 +49,6 @@ if uploaded_file:
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     df = df.sort_values(by = ["PopIndex"],ascending=False)
     st.dataframe(df)
-
-    df=px.data.tips()
-    fig=px.bar(df,x='Popindex',y='Trend', orientation='h')
     
     import matplotlib.pyplot as plt
     import numpy as np

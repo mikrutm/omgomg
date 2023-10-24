@@ -50,6 +50,6 @@ if uploaded_file:
     st.text(str(df.columns))
     
     st.dataframe(df)
-    fig = px.bar(df,y="Trend",x="PopIndex", orientation='h') 
+    fig = px.bar(df,x="PopIndex", orientation='h') 
     st.plotly_chart(fig, theme="streamlit")
     

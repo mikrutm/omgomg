@@ -48,20 +48,13 @@ if uploaded_file:
     df=df.set_index("Trend")
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     df = df.sort_values(by = ["PopIndex"],ascending=False)
+    
     st.dataframe(df)
-
-st.subheader("Define a custom colorscale")
-df = px.data.iris()
-fig = px.scatter(
-    df,
-    x="sepal_width",
-    y="sepal_length",
-    color="sepal_length",
-    color_continuous_scale="reds",
-)
-
-tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
-with tab1:
-    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-with tab2:
-    st.plotly_chart(fig, theme=None, use_container_width=True)
+    
+    fig = px.bar(df, x="PopIndex", y="Trend", orientation='h',
+             height=400,
+             title='Restaurant bills') 
+    tab3 = st.tabs(["Streamlit theme (default)"]) 
+    with tab3:
+        st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+    

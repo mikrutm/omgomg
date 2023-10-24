@@ -38,7 +38,6 @@ if uploaded_file:
     mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
     df = df[df.columns[:-1]]
     df = df.loc[mask]
-    st.dataframe(df)
     
     st.text(str(df.columns))
     summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
@@ -48,7 +47,9 @@ if uploaded_file:
     df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
     df=df.set_index("Trend")
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
+    df = df.sort_values(ascending=True)
     st.dataframe(df)
+
     df=px.data.tips()
     fig=px.bar(df,x='Popindex',y='Trend', orientation='h')
     st.write(fig)

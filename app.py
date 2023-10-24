@@ -50,6 +50,6 @@ if uploaded_file:
     df = df.sort_values(by = ["PopIndex"],ascending=False)
     
     st.dataframe(df)
-    fig = px.bar(df, x="PopIndex", y="Trend", orientation='h') 
+    fig = px.bar(df, orientation='h') 
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
     

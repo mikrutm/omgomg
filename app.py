@@ -41,6 +41,10 @@ if uploaded_file:
     
     summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
     top=35
+
+    top = st.slider('Top :', 5, 40,1)
+    
+    
     # Rename the columns
     summary_df.columns = ['Trend', 'PopIndex']
     df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)

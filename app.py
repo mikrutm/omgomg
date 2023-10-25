@@ -24,8 +24,8 @@ if uploaded_file:
     "Select your vacation for next year",(start_date,end_date),
     format="YYYY.MM.DD",
     )
-    start_date = d[0]
-    end_date = d[1]
+    start_date = d[0].date()
+    end_date = d[1].date()
 
     today = date.today()
     st.text(today)

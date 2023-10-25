@@ -24,9 +24,9 @@ if uploaded_file:
     "Select your vacation for next year",(start_date,end_date),
     format="YYYY.MM.DD",
     )
-    start_date = d[0].date()
-    end_date = d[1].date()
-
+    start_date = d[0]
+    end_date = d[1]
+    
     today = date.today()
     st.text(today)
     df=pd.read_csv(uploaded_file)
@@ -35,13 +35,15 @@ else:
 
  
 df['Date'] = pd.to_datetime(df['Date']).dt.date
+start_date = start_date.date()
+end_date = end_date.date()
 
 mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
 df = df[df.columns[:-1]]
 df = df.loc[mask]
     
 summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
-top=35
+
 
 top = st.slider('Top :', 5, 40,20)
     

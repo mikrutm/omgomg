@@ -28,7 +28,7 @@ if uploaded_file:
     )
     start_date = d[0]
     end_date = d[1]
-
+    df['Date'] = pd.to_datetime(df['Date']).dt.date
     today = date.today()
     st.text(today)
     df=pd.read_csv(uploaded_file)
@@ -58,5 +58,5 @@ st.text(str(df.columns))
 df = df.sort_values(by="PopIndex",ascending=True)
 st.dataframe(df)
 fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}") 
-st.plotly_chart(fig, theme="streamlit")
+st.plotly_chart(fig, theme="streamlit",width=1000,height=1000)
     

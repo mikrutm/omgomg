@@ -14,6 +14,8 @@ today = datetime.datetime.now()
 end_date = today - timedelta(days = 1)
 start_date = today - timedelta(days =7 )
 next_year = today.year 
+start_date = start_date.date()
+end_date = end_date.date()
 
 
 
@@ -35,8 +37,6 @@ else:
 
  
 df['Date'] = pd.to_datetime(df['Date']).dt.date
-start_date = start_date.date()
-end_date = end_date.date()
 
 mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
 df = df[df.columns[:-1]]

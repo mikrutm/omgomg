@@ -16,8 +16,6 @@ start_date = today - timedelta(days =7 )
 next_year = today.year 
 
 
-st.text(start_date)
-st.text(end_date)
 
 uploaded_file = st.file_uploader("Choose a CSV file")
 if uploaded_file:
@@ -37,7 +35,7 @@ else:
 
  
 df['Date'] = pd.to_datetime(df['Date']).dt.date
-st.dataframe(df)
+
 mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
 df = df[df.columns[:-1]]
 df = df.loc[mask]
@@ -58,5 +56,5 @@ st.text(str(df.columns))
 df = df.sort_values(by="PopIndex",ascending=True)
 st.dataframe(df)
 fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}") 
-st.plotly_chart(fig, theme="streamlit",width=1000,height=1000)
+st.plotly_chart(fig, theme="streamlit",width=2000,height=2000)
     

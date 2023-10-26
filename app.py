@@ -66,6 +66,6 @@ mask = ~df.index.isin(txt)
 df=df[mask]
 
 
-fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=1000) 
-st.plotly_chart(fig, theme="streamlit",width=2000,height=2000)
+fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=500,height=1000) 
+st.plotly_chart(fig, theme="streamlit",width=500,height=1000)
     

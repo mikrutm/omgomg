@@ -57,6 +57,6 @@ df = df.sort_values(by = ["PopIndex"],ascending=False)
 st.text(str(df.columns))
 df = df.sort_values(by="PopIndex",ascending=True)
 st.dataframe(df)
-fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=2000,height=2000) 
+fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=1000) 
 st.plotly_chart(fig, theme="streamlit",width=2000,height=2000)
     

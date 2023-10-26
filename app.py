@@ -51,7 +51,7 @@ top = st.slider('Top :', 5, 40,20)
 txt = st.text_area(
     "Stop Trends"    )
 
-st.write(f'Pominięte tagi: {list(txt)}')
+st.write(f'Pominięte tagi: {txt.split(sep=",")}')
 # Rename the columns
 summary_df.columns = ['Trend', 'PopIndex']
 df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)

@@ -51,8 +51,7 @@ top = st.slider('Top :', 5, 40,20)
 txt = st.text_area(
     "Stop Trends"    )
 
-st.write(f'Pominięte tagi: {txt}')
-    
+st.write(f'Pominięte tagi: {list(txt)}')
 # Rename the columns
 summary_df.columns = ['Trend', 'PopIndex']
 df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
@@ -61,7 +60,10 @@ df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
 df = df.sort_values(by = ["PopIndex"],ascending=False)
 
 df = df.sort_values(by="PopIndex",ascending=True)
+df.loc[~df['column_name'].isin(list(txt))]    
+
 st.dataframe(df)
+
 fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=1000) 
 st.plotly_chart(fig, theme="streamlit",width=2000,height=2000)
     

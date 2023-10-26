@@ -61,9 +61,10 @@ df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
 df = df.sort_values(by = ["PopIndex"],ascending=False)
 
 df = df.sort_values(by="PopIndex",ascending=True)
+st.dataframe(df["Trend"])
+
 df.drop(df[df["Trend"] in txt ].index, inplace=True)
 
-st.dataframe(df)
 
 fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=1000) 
 st.plotly_chart(fig, theme="streamlit",width=2000,height=2000)

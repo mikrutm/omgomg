@@ -35,6 +35,15 @@ if uploaded_file:
     df=pd.read_csv(uploaded_file)
 else:
     df=pd.read_csv("Twitter_trends(14).csv")
+    d = st.date_input(
+    "Wybierz zakres do analizy",(start_date,end_date),
+    format="YYYY.MM.DD",
+    )
+    start_date = d[0]
+    end_date = d[1]
+    
+    today = date.today()
+    st.text(today)
 
  
 df['Date'] = pd.to_datetime(df['Date']).dt.date

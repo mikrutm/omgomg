@@ -63,8 +63,8 @@ df = df.sort_values(by = ["PopIndex"],ascending=False)
 df = df.sort_values(by="PopIndex",ascending=True)
 st.dataframe(df)
 df.reset_index(inplace=True)
-
-df.drop(df[df["Trend"] in txt ].index, inplace=True)
+mask = ~df.index.isin(txt)
+df=df[mask]
 
 
 fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=1000) 

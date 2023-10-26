@@ -34,7 +34,7 @@ if uploaded_file:
     st.text(today)
     df=pd.read_csv(uploaded_file)
 else:
-    df=pd.read_csv("Twitter_trends(11).csv")
+    df=pd.read_csv("Twitter_trends(14).csv")
 
  
 df['Date'] = pd.to_datetime(df['Date']).dt.date

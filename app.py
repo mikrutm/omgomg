@@ -51,7 +51,8 @@ top = st.slider('Top :', 5, 40,20)
 txt = st.text_area(
     "Stop Trends"    )
 
-st.write(f'Pominięte tagi: {txt.split(sep=",")}')
+txt = txt.split(sep=",")
+st.write(f'Pominięte tagi: {txt}')
 # Rename the columns
 summary_df.columns = ['Trend', 'PopIndex']
 df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
@@ -60,7 +61,7 @@ df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
 df = df.sort_values(by = ["PopIndex"],ascending=False)
 
 df = df.sort_values(by="PopIndex",ascending=True)
-df.loc[~df['column_name'].isin(list(txt))]    
+df.drop(df[df.Trend in txt ].index, inplace=True)
 
 st.dataframe(df)
 

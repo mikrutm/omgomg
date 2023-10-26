@@ -7,7 +7,7 @@ import datetime
 import plotly
 import plotly.express as px 
 
-st.title('Twitter Tool')
+st.title('Twitter Tool WAO')
 
 today = datetime.datetime.now()
 
@@ -19,11 +19,11 @@ end_date = end_date.date()
 
 
 
-uploaded_file = st.file_uploader("Choose a CSV file")
+uploaded_file = st.file_uploader("Wgraj Trend CSV z maila")
 if uploaded_file:
     st.write("filename:", uploaded_file.name)       
     d = st.date_input(
-    "Select your vacation for next year",(start_date,end_date),
+    "Wybierz zakres do analizy",(start_date,end_date),
     format="YYYY.MM.DD",
     )
     start_date = d[0]
@@ -66,6 +66,8 @@ mask = ~df.index.isin(txt)
 df=df[mask]
 st.dataframe(df)
 
-fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=500) 
+fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=500, labels=
+             {"PopIndex":"Wskaźnik Popularności"
+             },template="simple_white") 
 st.plotly_chart(fig, theme="streamlit",width=1000,height=500)
     

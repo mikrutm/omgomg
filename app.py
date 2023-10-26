@@ -61,7 +61,7 @@ df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
 df = df.sort_values(by = ["PopIndex"],ascending=False)
 
 df = df.sort_values(by="PopIndex",ascending=True)
-df.drop(df[df.Trend in txt ].index, inplace=True)
+df.drop(df[df["Trend"] in txt ].index, inplace=True)
 
 st.dataframe(df)
 

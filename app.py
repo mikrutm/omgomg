@@ -49,7 +49,7 @@ top = st.slider('Top :', 5, 40,20)
 
 
 txt = st.text_area(
-    "Stop Trends"    )
+    "Stop Trends (wpisz trendy do ponięcie w formacie : Trend1,Trend2,...)"    )
 
 txt = txt.split(sep=",")
 st.write(f'Pominięte tagi: {txt}')

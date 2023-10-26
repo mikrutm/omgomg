@@ -62,7 +62,6 @@ df = df.sort_values(by = ["PopIndex"],ascending=False)
 
 df = df.sort_values(by="PopIndex",ascending=True)
 st.dataframe(df)
-df.reset_index(inplace=True)
 mask = ~df.index.isin(txt)
 df=df[mask]
 

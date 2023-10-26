@@ -46,7 +46,12 @@ summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
 
 
 top = st.slider('Top :', 5, 40,20)
-    
+
+
+txt = st.text_area(
+    "Stop Trends"    )
+
+st.write(f'Pominięte tagi: {txt}')
     
 # Rename the columns
 summary_df.columns = ['Trend', 'PopIndex']
@@ -54,7 +59,7 @@ df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_va
 df=df.set_index("Trend")
 df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
 df = df.sort_values(by = ["PopIndex"],ascending=False)
-st.text(str(df.columns))
+
 df = df.sort_values(by="PopIndex",ascending=True)
 st.dataframe(df)
 fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=1000) 

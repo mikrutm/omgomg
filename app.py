@@ -6,7 +6,8 @@ import numpy as np
 import datetime
 import plotly
 import plotly.express as px 
-
+[theme]
+base="light"
 st.title('Twitter Tool WAO')
 
 today = datetime.datetime.now()
@@ -45,7 +46,7 @@ df = df.loc[mask]
 summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
 
 
-top = st.slider('Top :', 5, 40,20)
+top = st.slider('Ile najpopularniejszych tagów :', 5, 40,20)
 
 
 txt = st.text_area(

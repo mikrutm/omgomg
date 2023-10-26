@@ -6,7 +6,7 @@ import numpy as np
 import datetime
 import plotly
 import plotly.express as px 
-[theme]
+
 base="light"
 st.title('Twitter Tool WAO')
 

@@ -10,7 +10,7 @@ import plotly.express as px
 base="light"
 st.title('Twitter Tool WAO')
 
-a = st.sidebar.radio('Select one:', [1, 2])
+
 with st.sidebar:
   st.radio('Select one:', [1, 2])
 

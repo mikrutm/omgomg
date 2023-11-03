@@ -9,10 +9,9 @@ import plotly.express as px
 
 base="light"
 
-st.title('Twitter Tool WAO')
-tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
-with tab1:
-    pass
+st.title('Twitter Tool')
+tab1, tab2 = st.tabs(["Top", "Trend"])
+
 with st.sidebar:
     today = datetime.datetime.now()
     end_date = today - timedelta(days = 1)
@@ -52,12 +51,14 @@ with st.sidebar:
     summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
 
 
+    
+with tab1:
     top = st.slider('Ile najpopularniejszych tagów :', 5, 40,20)
-    
-    
+
+
     txt = st.text_area(
         "Stop Trends (wpisz trendy do ponięcie w formacie : Trend1,Trend2,...)"    )
-    
+
     txt = txt.split(sep=",")
     st.write(f'Pominięte tagi: {txt}')
     # Rename the columns
@@ -66,15 +67,15 @@ with st.sidebar:
     df=df.set_index("Trend")
     df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
     df = df.sort_values(by = ["PopIndex"],ascending=True)
-    
+
     df = df.sort_values(by="PopIndex",ascending=True)
-    
+
     mask = ~df.index.isin(txt)
     df=df[mask]
-st.dataframe(df)
+    st.dataframe(df)
 
-fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=500, labels=
-             {"PopIndex":"Wskaźnik Popularności"
-             },template="simple_white") 
-st.plotly_chart(fig, theme="streamlit",width=1000,height=500)
+    fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1200,height=700, labels=
+                 {"PopIndex":"Wskaźnik Popularności"
+                 },template="simple_white") 
+    st.plotly_chart(fig, theme="streamlit",width=1200,height=700)
     

@@ -91,7 +91,7 @@ with tab2:
     st.write(f'Tagi : {txt}')
 
     df_g = df[df['Trend'].isin(txt)]
-    df_g['Inverted Position'].groupby(df['Date']).sum()
+    df_g['Inverted Position'].groupby(df_g['Date']).sum()
     st.dataframe(df_g)
     
     fig_1 = px.bar(df_g, orientation='h',title=f"Popularność grupy tagów {txt} w okresie {start_date} - {end_date}",template="simple_white") 

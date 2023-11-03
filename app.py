@@ -16,7 +16,6 @@ def generate_updated_dataframe(start_date, end_date, df2):
     print("_______________DF2_______________________________________________")
     
     df2 = df2.reset_index()
-    print(df2)
     df2.columns = ['Date', 'Inverted Position']
     print(df2)
     date_range = pd.date_range(start=start_date, end=end_date).strftime('%Y-%m-%d')
@@ -114,7 +113,6 @@ with tab2:
     df_g = df[df['Trend'].isin(txt1)]
 
     df_g = df_g['Inverted Position'].groupby(df_g['Date']).sum()
-    print(df_g)
     df_gm= generate_updated_dataframe(start_date,end_date,df_g)
 
     st.dataframe(df_g)

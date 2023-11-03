@@ -110,6 +110,7 @@ with tab2:
     df_g = df[df['Trend'].isin(txt1)]
 
     df_g = df_g['Inverted Position'].groupby(df_g['Date']).sum()
+    print(df_g)
     df_gm= generate_updated_dataframe(start_date,end_date,df_g)
 
 

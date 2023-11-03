@@ -55,7 +55,7 @@ with st.sidebar:
 
     
 with tab1:
-    st.title('Top trends Twitter')
+    st.subheader('Top trends Twitter')
     top = st.slider('Ile najpopularniejszych tagów :', 5, 40,20)
 
 
@@ -82,4 +82,4 @@ with tab1:
                  },template="simple_white") 
     st.plotly_chart(fig, theme="streamlit",width=1000,height=800)
 with tab2:
-    st.title('Trend')
+    st.subheader('Trend')

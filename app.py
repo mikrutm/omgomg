@@ -74,8 +74,8 @@ with tab1:
     df=df[mask]
     st.dataframe(df)
 
-    fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1200,height=700, labels=
+    fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=800, labels=
                  {"PopIndex":"Wskaźnik Popularności"
                  },template="simple_white") 
-    st.plotly_chart(fig, theme="streamlit",width=1200,height=700)
+    st.plotly_chart(fig, theme="streamlit",width=1000,height=800)
     

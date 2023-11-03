@@ -112,7 +112,6 @@ with tab2:
     df_g= generate_updated_dataframe(start_date,end_date,df_g)
     st.dataframe(df_g)
     fig_1 = px.bar(df_g,title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
-    fig_1.update_layout(yaxis_range=[start_date,end_date])
     st.plotly_chart(fig_1, theme="streamlit")
 
     df_g2 = df[df['Trend'].isin(txt2)]

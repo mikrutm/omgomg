@@ -10,6 +10,14 @@ import plotly.express as px
 base="light"
 st.title('Twitter Tool WAO')
 
+tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
+tab1.write("this is tab 1")
+tab2.write("this is tab 2")
+with tab1:
+  st.radio('Select one:', [1, 2])
+
+
+
 today = datetime.datetime.now()
 
 end_date = today - timedelta(days = 1)

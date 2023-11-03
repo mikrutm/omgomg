@@ -80,6 +80,7 @@ with tab1:
                  {"PopIndex":"Wskaźnik Popularności"
                  },template="simple_white") 
     st.plotly_chart(fig, theme="streamlit",width=1000,height=800)
+
 with tab2:
 
     st.subheader('Trend')
@@ -92,6 +93,6 @@ with tab2:
     df_g = df[df['Trend'].isin(["Mazurek", "Mazurka"])]
     df_g['Inverted Position'].groupby(df['Date']).sum()
 
-    fig_1 = px.bar(df_g, orientation='h',title=f"Popularność grupy tagów {txt} w okresie {start_date} - {end_date}",width=1000,height=800,template="simple_white") 
-    st.plotly_chart(fig_1, theme="streamlit",width=1000,height=800)
+    fig_1 = px.bar(df_g, orientation='h',title=f"Popularność grupy tagów {txt} w okresie {start_date} - {end_date}",template="simple_white") 
+    st.plotly_chart(fig_1, theme="streamlit")
 

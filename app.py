@@ -23,6 +23,7 @@ def generate_updated_dataframe(start_date, end_date, df2):
     merged_df = merged_df.drop(['Inverted Position_x', 'Inverted Position_y'], axis=1)
     return merged_df
 
+
 with st.sidebar:
     st.title('Twitter Tool')
     today = datetime.datetime.now()
@@ -105,8 +106,9 @@ with tab2:
     df_g = df[df['Trend'].isin(txt1)]
 
     df_g = df_g['Inverted Position'].groupby(df_g['Date']).sum()
-    df_gm= generate_updated_dataframe(end_date,start_date,df_g)
-    
+    df_gm= generate_updated_dataframe(start_date,end_date,df_g)
+
+
     st.dataframe(df_gm)
     st.dataframe(df_g)
     fig_1 = px.bar(df_g,title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 

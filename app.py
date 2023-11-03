@@ -13,6 +13,8 @@ st.title('Twitter Tool')
 tab1, tab2 = st.tabs(["Top", "Trend"])
 
 with st.sidebar:
+
+   
     today = datetime.datetime.now()
     end_date = today - timedelta(days = 1)
     start_date = today - timedelta(days =7 )
@@ -53,6 +55,7 @@ with st.sidebar:
 
     
 with tab1:
+    st.title('Top trends Twitter')
     top = st.slider('Ile najpopularniejszych tagów :', 5, 40,20)
 
 
@@ -63,19 +66,20 @@ with tab1:
     st.write(f'Pominięte tagi: {txt}')
     # Rename the columns
     summary_df.columns = ['Trend', 'PopIndex']
-    df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
-    df=df.set_index("Trend")
-    df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
-    df = df.sort_values(by = ["PopIndex"],ascending=True)
+    df_s = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
+    df_s=df_s.set_index("Trend")
+    df_s["PopIndex"] = df_s["PopIndex"]/df["PopIndex"].max()
+    df_s = df_s.sort_values(by = ["PopIndex"],ascending=True)
 
-    df = df.sort_values(by="PopIndex",ascending=True)
+    df_s = df_s.sort_values(by="PopIndex",ascending=True)
 
-    mask = ~df.index.isin(txt)
-    df=df[mask]
-    st.dataframe(df)
+    mask = ~df_s.index.isin(txt)
+    df_s=df_s[mask]
+    st.dataframe(df_s)
 
-    fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=800, labels=
+    fig = px.bar(df_s,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=800, labels=
                  {"PopIndex":"Wskaźnik Popularności"
                  },template="simple_white") 
     st.plotly_chart(fig, theme="streamlit",width=1000,height=800)
-    
+with tab2:
+    st.title('Trend')

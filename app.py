@@ -84,17 +84,28 @@ with tab1:
 with tab2:
 
     st.subheader('Trend')
-    txt = st.text_area(
-        "Wybierz grupę tagów : "    )
+    txt1 = st.text_area(
+        "Wybierz pierwszą grupę tagów : "    )
 
-    txt = txt.split(sep=",")
-    st.write(f'Tagi : {txt}')
+    txt1 = txt1.split(sep=",")
+    st.write(f'Tagi pierwszej grupy : {txt1}')
+    txt2 = st.text_area(
+        "Wybierz druga grupę tagów : "    )
 
-    df_g = df[df['Trend'].isin(txt)]
-    st.dataframe(df_g)
+    txt2 = txt2.split(sep=",")
+    st.write(f'Tagi drugiej grupy : {txt2}')
+
+    df_g = df[df['Trend'].isin(txt1)]
+
     df_g = df_g['Inverted Position'].groupby(df_g['Date']).sum()
-    st.dataframe(df_g)
     
-    fig_1 = px.bar(df_g,title=f"Popularność grupy tagów {txt} w okresie {start_date} - {end_date}",template="simple_white") 
+    fig_1 = px.bar(df_g,title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
     st.plotly_chart(fig_1, theme="streamlit")
+
+    df_g2 = df[df['Trend'].isin(txt2)]
+
+    df_g2 = df_g2['Inverted Position'].groupby(df_g['Date']).sum()
+    
+    fig_2 = px.bar(df_g2,title=f"Popularność grupy tagów {txt2} w okresie {start_date} - {end_date}",template="simple_white") 
+    st.plotly_chart(fig_2, theme="streamlit")
 

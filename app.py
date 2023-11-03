@@ -16,7 +16,9 @@ def generate_updated_dataframe(start_date, end_date, df2):
     date_range = pd.date_range(start=start_date, end=end_date).strftime('%Y-%m-%d')
     data = {'Date': date_range, 'Inverted Position': [0] * len(date_range)}
     df = pd.DataFrame(data)
+    print(df)
     merged_df = df.merge(df2, on='Date', how='left')
+    print(merged_df)
     merged_df['Inverted Position'] = merged_df['Inverted Position_y'].fillna(0)
     merged_df = merged_df.drop(['Inverted Position_x', 'Inverted Position_y'], axis=1)
     return merged_df

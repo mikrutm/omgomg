@@ -17,8 +17,8 @@ def generate_updated_dataframe(start_date, end_date, df2):
     data = {'Date': date_range}
     df = pd.DataFrame(data)
     merged_df = df.merge(df2, on='Date', how='left')
-    merged_df['Inverted Position'] = merged_df['Value'].fillna(0)
-    merged_df = merged_df.drop('Value', axis=1)
+    merged_df['Inverted Position'] = merged_df['Inverted Position'].fillna(0)
+    merged_df = merged_df.drop('Inverted Position', axis=1)
     return merged_df
 
 with st.sidebar:

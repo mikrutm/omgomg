@@ -68,7 +68,7 @@ with tab1:
     summary_df.columns = ['Trend', 'PopIndex']
     df_s = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
     df_s=df_s.set_index("Trend")
-    df_s["PopIndex"] = df_s["PopIndex"]/df["PopIndex"].max()
+    df_s["PopIndex"] = df_s["PopIndex"]/df_s["PopIndex"].max()
     df_s = df_s.sort_values(by = ["PopIndex"],ascending=True)
 
     df_s = df_s.sort_values(by="PopIndex",ascending=True)

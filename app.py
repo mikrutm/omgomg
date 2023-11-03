@@ -100,21 +100,24 @@ with tab2:
 
     txt1 = txt1.split(sep=",")
     st.write(f'Tagi pierwszej grupy : {txt1}')
+   
+
+    df_g = df[df['Trend'].isin(txt1)]
+
+    df_g = df_g['Inverted Position'].groupby(df_g['Date']).sum()
+    df_gm= generate_updated_dataframe(end_date,start_date,df_g)
+    
+    st.dataframe(df_gm)
+    st.dataframe(df_g)
+    fig_1 = px.bar(df_g,title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
+    st.plotly_chart(fig_1, theme="streamlit")
+    
+    
     txt2 = st.text_area(
         "Wybierz druga grupę tagów : "    )
 
     txt2 = txt2.split(sep=",")
     st.write(f'Tagi drugiej grupy : {txt2}')
-
-    df_g = df[df['Trend'].isin(txt1)]
-
-    df_g = df_g['Inverted Position'].groupby(df_g['Date']).sum()
-    df_gm= generate_updated_dataframe(start_date,end_date,df_g)
-    st.dataframe(df_gm)
-    st.dataframe(df_g)
-    fig_1 = px.bar(df_g,title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
-    st.plotly_chart(fig_1, theme="streamlit")
-
     df_g2 = df[df['Trend'].isin(txt2)]
 
     df_g2 = df_g2['Inverted Position'].groupby(df_g2['Date']).sum()

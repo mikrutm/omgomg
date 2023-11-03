@@ -12,6 +12,15 @@ base="light"
 
 tab1, tab2 = st.tabs(["Top", "Trend"])
 
+def generate_updated_dataframe(start_date, end_date, df2):
+    date_range = pd.date_range(start=start_date, end=end_date).strftime('%Y-%m-%d')
+    data = {'Date': date_range}
+    df = pd.DataFrame(data)
+    merged_df = df.merge(df2, on='Date', how='left')
+    merged_df['Inverted Position'] = merged_df['Value'].fillna(0)
+    merged_df = merged_df.drop('Value', axis=1)
+    return merged_df
+
 with st.sidebar:
     st.title('Twitter Tool')
     today = datetime.datetime.now()
@@ -98,6 +107,7 @@ with tab2:
     df_g = df[df['Trend'].isin(txt1)]
 
     df_g = df_g['Inverted Position'].groupby(df_g['Date']).sum()
+    df_g= generate_updated_dataframe(start_date,end_date,df_g)
     
     fig_1 = px.bar(df_g,title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
     fig_1.update_layout(yaxis_range=[start_date,end_date])
@@ -106,7 +116,7 @@ with tab2:
     df_g2 = df[df['Trend'].isin(txt2)]
 
     df_g2 = df_g2['Inverted Position'].groupby(df_g2['Date']).sum()
-    
+    df_g2= generate_updated_dataframe(start_date,end_date,df_g2)
     fig_2 = px.bar(df_g2,title=f"Popularność grupy tagów {txt2} w okresie {start_date} - {end_date}",template="simple_white") 
     st.plotly_chart(fig_2, theme="streamlit")
 

@@ -12,69 +12,65 @@ base="light"
 st.title('Twitter Tool WAO')
 tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
 with tab1:
-    with st.sidebar:
-          st.radio('Select one:', [1, 2])
+    pass
+with st.sidebar:
+    today = datetime.datetime.now()
+    end_date = today - timedelta(days = 1)
+    start_date = today - timedelta(days =7 )
+    next_year = today.year 
+    start_date = start_date.date()
+    end_date = end_date.date()
 
 
 
-today = datetime.datetime.now()
+    uploaded_file = st.file_uploader("Wgraj Trend CSV z maila")
+    if uploaded_file:
+        st.write("filename:", uploaded_file.name)       
+        d = st.date_input(
+        "Wybierz zakres do analizy",(start_date,end_date),
+        format="YYYY.MM.DD",
+        )
+        start_date = d[0]
+        end_date = d[1]
 
-end_date = today - timedelta(days = 1)
-start_date = today - timedelta(days =7 )
-next_year = today.year 
-start_date = start_date.date()
-end_date = end_date.date()
-
-
-
-uploaded_file = st.file_uploader("Wgraj Trend CSV z maila")
-if uploaded_file:
-    st.write("filename:", uploaded_file.name)       
-    d = st.date_input(
-    "Wybierz zakres do analizy",(start_date,end_date),
-    format="YYYY.MM.DD",
-    )
-    start_date = d[0]
-    end_date = d[1]
+        df=pd.read_csv(uploaded_file)
+    else:
+        df=pd.read_csv("Twitter_trends(14).csv")
+        d = st.date_input(
+        "Wybierz zakres do analizy",(start_date,end_date),
+        format="YYYY.MM.DD",
+        )
+        start_date = d[0]
+        end_date = d[1]
     
-    df=pd.read_csv(uploaded_file)
-else:
-    df=pd.read_csv("Twitter_trends(14).csv")
-    d = st.date_input(
-    "Wybierz zakres do analizy",(start_date,end_date),
-    format="YYYY.MM.DD",
-    )
-    start_date = d[0]
-    end_date = d[1]
- 
-df['Date'] = pd.to_datetime(df['Date']).dt.date
+    df['Date'] = pd.to_datetime(df['Date']).dt.date
 
-mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
-df = df[df.columns[:-1]]
-df = df.loc[mask]
+    mask = (df['Date'] >= start_date) & (df['Date'] <= end_date)  
+    df = df[df.columns[:-1]]
+    df = df.loc[mask]
+
+    summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
+
+
+    top = st.slider('Ile najpopularniejszych tagów :', 5, 40,20)
     
-summary_df = df.groupby('Trend')['Inverted Position'].sum().reset_index()
-
-
-top = st.slider('Ile najpopularniejszych tagów :', 5, 40,20)
-
-
-txt = st.text_area(
-    "Stop Trends (wpisz trendy do ponięcie w formacie : Trend1,Trend2,...)"    )
-
-txt = txt.split(sep=",")
-st.write(f'Pominięte tagi: {txt}')
-# Rename the columns
-summary_df.columns = ['Trend', 'PopIndex']
-df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
-df=df.set_index("Trend")
-df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
-df = df.sort_values(by = ["PopIndex"],ascending=True)
-
-df = df.sort_values(by="PopIndex",ascending=True)
-
-mask = ~df.index.isin(txt)
-df=df[mask]
+    
+    txt = st.text_area(
+        "Stop Trends (wpisz trendy do ponięcie w formacie : Trend1,Trend2,...)"    )
+    
+    txt = txt.split(sep=",")
+    st.write(f'Pominięte tagi: {txt}')
+    # Rename the columns
+    summary_df.columns = ['Trend', 'PopIndex']
+    df = summary_df.sort_values(by='PopIndex', ascending=   False).head(top).sort_values(by='PopIndex', ascending=   True)
+    df=df.set_index("Trend")
+    df["PopIndex"] = df["PopIndex"]/df["PopIndex"].max()
+    df = df.sort_values(by = ["PopIndex"],ascending=True)
+    
+    df = df.sort_values(by="PopIndex",ascending=True)
+    
+    mask = ~df.index.isin(txt)
+    df=df[mask]
 st.dataframe(df)
 
 fig = px.bar(df,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=500, labels=

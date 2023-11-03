@@ -8,9 +8,11 @@ import plotly
 import plotly.express as px 
 
 base="light"
+
 st.title('Twitter Tool WAO')
-
-
+tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
+with tab1:
+    st.radio('Select one:', [1, 2])
 with st.sidebar:
   st.radio('Select one:', [1, 2])
 

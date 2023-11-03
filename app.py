@@ -18,11 +18,10 @@ def generate_updated_dataframe(start_date, end_date, df2):
     df = pd.DataFrame(data)
     merged_df = df.merge(df2, on='Date', how='left')
     merged_df['Inverted Position_x'].fillna(0, inplace=True)
-    merged_df['Inverted Position_y'].fillna(0, inplace=True)
+    merged_df['Inverted Position_y'] = merged_df['Inverted Position_y'].fillna(0)
     merged_df['Inverted Position'] = merged_df['Inverted Position_x'] + merged_df['Inverted Position_y']
     merged_df = merged_df.drop(['Inverted Position_x', 'Inverted Position_y'], axis=1)
     return merged_df
-
 
 with st.sidebar:
     st.title('Twitter Tool')

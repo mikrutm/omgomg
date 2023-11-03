@@ -92,7 +92,8 @@ with tab2:
 
     df_g = df[df['Trend'].isin(["Mazurek", "Mazurka"])]
     df_g['Inverted Position'].groupby(df['Date']).sum()
-
+    st.dataframe(df_g)
+    
     fig_1 = px.bar(df_g, orientation='h',title=f"Popularność grupy tagów {txt} w okresie {start_date} - {end_date}",template="simple_white") 
     st.plotly_chart(fig_1, theme="streamlit")
 

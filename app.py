@@ -90,7 +90,7 @@ with tab2:
     txt = txt.split(sep=",")
     st.write(f'Tagi : {txt}')
 
-    df_g = df[df['Trend'].isin(["Mazurek", "Mazurka"])]
+    df_g = df[df['Trend'].isin(txt)]
     df_g['Inverted Position'].groupby(df['Date']).sum()
     st.dataframe(df_g)
     

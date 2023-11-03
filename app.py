@@ -15,7 +15,7 @@ tab1, tab2 = st.tabs(["Top", "Trend"])
 def generate_updated_dataframe(start_date, end_date, df2):
     print("_______________DF2_______________________________________________")
     
-    df2 = df2.reset_index()
+    #df2 = df2.reset_index()
     df2.columns = ['Date', 'Inverted Position']
     st.dataframe(df2)
     date_range = pd.date_range(start=start_date, end=end_date).strftime('%Y-%m-%d')

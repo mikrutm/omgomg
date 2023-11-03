@@ -91,6 +91,7 @@ with tab2:
     st.write(f'Tagi : {txt}')
 
     df_g = df[df['Trend'].isin(txt)]
+    st.dataframe(df_g)
     df_g['Inverted Position'].groupby(df_g['Date']).sum()
     st.dataframe(df_g)
     

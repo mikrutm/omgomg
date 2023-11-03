@@ -17,7 +17,7 @@ def generate_updated_dataframe(start_date, end_date, df2):
     
     df2 = df2.reset_index()
     df2.columns = ['Date', 'Inverted Position']
-    print(df2)
+    st.dataframe(df2)
     date_range = pd.date_range(start=start_date, end=end_date).strftime('%Y-%m-%d')
     data = {'Date': date_range, 'Inverted Position': [0] * len(date_range)}
     df = pd.DataFrame(data)
@@ -132,6 +132,6 @@ with tab2:
     df_g2 = df_g2['Inverted Position'].groupby(df_g2['Date']).sum()
     df_g2= generate_updated_dataframe(start_date,end_date,df_g2)
     st.dataframe(df_g2)
-    fig_2 = px.bar(df_g2,title=f"Popularność grupy tagów {txt2} w okresie {start_date} - {end_date}",template="simple_white") 
-    st.plotly_chart(fig_2, theme="streamlit")
+    #fig_2 = px.bar(df_g2,title=f"Popularność grupy tagów {txt2} w okresie {start_date} - {end_date}",template="simple_white") 
+    #st.plotly_chart(fig_2, theme="streamlit")
 

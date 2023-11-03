@@ -9,12 +9,11 @@ import plotly.express as px
 
 base="light"
 
-st.title('Twitter Tool')
+
 tab1, tab2 = st.tabs(["Top", "Trend"])
 
 with st.sidebar:
-
-   
+    st.title('Twitter Tool')
     today = datetime.datetime.now()
     end_date = today - timedelta(days = 1)
     start_date = today - timedelta(days =7 )
@@ -82,4 +81,17 @@ with tab1:
                  },template="simple_white") 
     st.plotly_chart(fig, theme="streamlit",width=1000,height=800)
 with tab2:
+
     st.subheader('Trend')
+    txt = st.text_area(
+        "Wybierz grupę tagów : "    )
+
+    txt = txt.split(sep=",")
+    st.write(f'Tagi : {txt}')
+
+    df_g = df[df['Trend'].isin(["Mazurek", "Mazurka"])]
+    df_g['Inverted Position'].groupby(df['Date']).sum()
+
+    fig_1 = px.bar(df_g,x="PopIndex", orientation='h',title=f"Popularność grupy tagów {txt} w okresie {start_date} - {end_date}",width=1000,height=800,template="simple_white") 
+    st.plotly_chart(fig_1, theme="streamlit",width=1000,height=800)
+

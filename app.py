@@ -111,8 +111,8 @@ with tab2:
 
     st.dataframe(df_gm)
     st.dataframe(df_g)
-    fig_1 = px.bar(df_gm,title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
-    st.plotly_chart(fig_1, theme="streamlit")
+    #fig_1 = px.bar(df_gm,title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
+    #st.plotly_chart(fig_1, theme="streamlit")
     
     
     txt2 = st.text_area(

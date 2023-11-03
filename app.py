@@ -16,6 +16,7 @@ def generate_updated_dataframe(start_date, end_date, df2):
     print("_______________DF2_______________________________________________")
     
     df2 = df2.reset_index()
+    print(df2)
     df2.columns = ['Date', 'Inverted Position']
     print(df2)
     date_range = pd.date_range(start=start_date, end=end_date).strftime('%Y-%m-%d')

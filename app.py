@@ -13,7 +13,6 @@ base="light"
 tab1, tab2 = st.tabs(["Top", "Trend"])
 
 def generate_updated_dataframe(start_date, end_date, df2):
-    print("_______________DF2_______________________________________________")
     
     df2 = df2.reset_index()
     df2.columns = ['Date', 'Inverted Position']
@@ -27,7 +26,7 @@ def generate_updated_dataframe(start_date, end_date, df2):
     
     merged_df['Inverted Position'] = merged_df['Inverted Position_y'].fillna(0)
     merged_df = merged_df.drop(['Inverted Position_x', 'Inverted Position_y'], axis=1)
-    print(merged_df)
+    
     return merged_df
 
 with st.sidebar:
@@ -112,9 +111,9 @@ with tab2:
     df_g = df[df['Trend'].isin(txt1)]
 
     df_g = df_g['Inverted Position'].groupby(df_g['Date']).sum()
-    df_gm= generate_updated_dataframe(start_date,end_date,df_g)
+    df_g= generate_updated_dataframe(start_date,end_date,df_g)
 
-    fig_1 = px.bar(df_gm,x = "Date",y="Inverted Position",title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
+    fig_1 = px.bar(df_g,x = "Date",y="Inverted Position",title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
     st.plotly_chart(fig_1, theme="streamlit")    
     
     txt2 = st.text_area(
@@ -122,6 +121,7 @@ with tab2:
 
     txt2 = txt2.split(sep=",")
     st.write(f'Tagi drugiej grupy : {txt2}')
+
     df_g2 = df[df['Trend'].isin(txt2)]
 
     df_g2 = df_g2['Inverted Position'].groupby(df_g2['Date']).sum()
@@ -129,4 +129,8 @@ with tab2:
     
     fig_2 = px.bar(df_g2,x = "Date",y="Inverted Position",title=f"Popularność grupy tagów {txt2} w okresie {start_date} - {end_date}",template="simple_white") 
     st.plotly_chart(fig_2, theme="streamlit")
+    merged_df = df_g2.merge(df_g, on='Date', suffixes=('_2', '_1'))
 
+    print(merged_df)
+    fig_3 = px.bar(merged_df,x = "Date",y = ["Inverted Position_1","Inverted Position_2"],title=f"Porównanie popularności dwóch grup tagów w okresie {start_date} - {end_date}",template="simple_white") 
+    st.plotly_chart(fig_3, theme="streamlit")

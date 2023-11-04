@@ -17,17 +17,17 @@ def generate_updated_dataframe(start_date, end_date, df2):
     
     df2 = df2.reset_index()
     df2.columns = ['Date', 'Inverted Position']
-    print(df2)
+    
     date_range = pd.date_range(start=start_date, end=end_date).strftime('%Y-%m-%d')
     data = {'Date': date_range, 'Inverted Position': [0] * len(date_range)}
     df = pd.DataFrame(data)
-    print("_______________DF_______________________________________________")
-    print(df)
+    df['Date'] = pd.to_datetime(df['Date'])
+    df2['Date'] = pd.to_datetime(df2['Date'])
     merged_df = df.merge(df2, on='Date', how='left')
-    print("_______________Merged_______________________________________________")
-    print(merged_df)
+    
     merged_df['Inverted Position'] = merged_df['Inverted Position_y'].fillna(0)
     merged_df = merged_df.drop(['Inverted Position_x', 'Inverted Position_y'], axis=1)
+    print(merged_df)
     return merged_df
 
 with st.sidebar:
@@ -114,12 +114,8 @@ with tab2:
     df_g = df_g['Inverted Position'].groupby(df_g['Date']).sum()
     df_gm= generate_updated_dataframe(start_date,end_date,df_g)
 
-    #st.dataframe(df_g)
-    #st.dataframe(df_gm)
-   
-    #fig_1 = px.bar(df_gm,title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
-    #st.plotly_chart(fig_1, theme="streamlit")
-    
+    fig_1 = px.bar(df_gm,x = "Date",y="Inverted Position",title=f"Popularność grupy tagów {txt1} w okresie {start_date} - {end_date}",template="simple_white") 
+    st.plotly_chart(fig_1, theme="streamlit")    
     
     txt2 = st.text_area(
         "Wybierz druga grupę tagów : "    )
@@ -129,8 +125,8 @@ with tab2:
     df_g2 = df[df['Trend'].isin(txt2)]
 
     df_g2 = df_g2['Inverted Position'].groupby(df_g2['Date']).sum()
-    #df_g2= generate_updated_dataframe(start_date,end_date,df_g2)
-    #st.dataframe(df_g2)
-    #fig_2 = px.bar(df_g2,title=f"Popularność grupy tagów {txt2} w okresie {start_date} - {end_date}",template="simple_white") 
-    #st.plotly_chart(fig_2, theme="streamlit")
+    df_g2= generate_updated_dataframe(start_date,end_date,df_g2)
+    
+    fig_2 = px.bar(df_g2,x = "Date",y="Inverted Position",title=f"Popularność grupy tagów {txt2} w okresie {start_date} - {end_date}",template="simple_white") 
+    st.plotly_chart(fig_2, theme="streamlit")
 

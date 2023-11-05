@@ -10,7 +10,7 @@ import plotly.express as px
 base="light"
 
 
-tab1, tab2 = st.tabs(["Top", "Trend"])
+tab1, tab2, tab3 = st.tabs(["Top", "Trend","Alert"])
 
 def generate_updated_dataframe(start_date, end_date, df2):
     
@@ -134,4 +134,5 @@ with tab2:
     print(merged_df)
     fig_3 = px.bar(merged_df,x = "Date",y = ["Inverted Position_1","Inverted Position_2"],title=f"Porównanie popularności dwóch grup tagów w okresie {start_date} - {end_date}",template="simple_white") 
     st.plotly_chart(fig_3, theme="streamlit")
-    
+with tab3:
+    st.subheader('TBA')

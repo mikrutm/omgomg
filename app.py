@@ -165,14 +165,14 @@ with tab3:
     
     st.subheader('TBA')
 
-    txt = st.text_area(
+    txt3 = st.text_area(
         "Trend Godzinowy : "    )
 
-    txt = txt.split(sep=",")
-    st.write(f'Pominięte tagi: {txt}')
+    txt3 = txt3.split(sep=",")
+    st.write(f'Pominięte tagi: {txt3}')
     df_time[["Inverted Position","Trend","DateTime"]]
     
-    mask = ~df_time.index.isin(txt)
+    mask = ~df_time.index.isin(txt3)
     df_s=df_s[mask]
     df_s
     #st.dataframe(df_time)

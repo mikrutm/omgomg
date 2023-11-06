@@ -171,8 +171,8 @@ with tab3:
     txt3 = txt3.split(sep=",")
     st.write(f'Pominięte tagi: {txt3}')
     df_time[["Inverted Position","Trend","DateTime"]]
+    mask = ~df_time.Trend.isin(txt3)
     
-    mask = ~df_time.index.isin(txt3)
     df_s=df_s[mask]
     df_s
     #st.dataframe(df_time)

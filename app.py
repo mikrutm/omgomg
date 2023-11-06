@@ -76,13 +76,14 @@ with st.sidebar:
     
     else:
         df=pd.read_csv("Twitter_trends(14).csv")
+        df_time = add_datetime_column(df)
+ 
         d = st.date_input(
         "Wybierz zakres do analizy",(start_date,end_date),
         format="YYYY.MM.DD",
         )
         start_date = d[0]
         end_date = d[1]
-        df_time = add_datetime_column(df)
     
     df['Date'] = pd.to_datetime(df['Date']).dt.date
 

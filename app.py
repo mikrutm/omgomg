@@ -168,11 +168,9 @@ with tab3:
     txt3 = st.text_area(
         "Trend Godzinowy : "    )
 
-    txt3 = txt3.split(sep=",")
+    #txt3 = txt3.split(sep=",")
     st.write(f'Pominięte tagi: {txt3}')
     df_time[["Inverted Position","Trend","DateTime"]]
-    mask = ~df_time.Trend.isin(txt3)
-    
-    df_s=df_s[mask]
+    selected_rows = df_time[df_time['Trend'] == str(txt3)]
     df_s
     #st.dataframe(df_time)

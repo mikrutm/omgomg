@@ -164,4 +164,4 @@ with tab3:
     
     st.subheader('TBA')
     df_time[["Inverted Position","Trend","DateTime"]]
-    st.dataframe(df_time)
+    #st.dataframe(df_time)

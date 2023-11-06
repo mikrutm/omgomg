@@ -72,6 +72,8 @@ with st.sidebar:
         end_date = d[1]
 
         df=pd.read_csv(uploaded_file)
+        df_time = add_datetime_column(df)
+    
     else:
         df=pd.read_csv("Twitter_trends(14).csv")
         d = st.date_input(
@@ -80,7 +82,7 @@ with st.sidebar:
         )
         start_date = d[0]
         end_date = d[1]
-    df_time = add_datetime_column(df)
+        df_time = add_datetime_column(df)
     
     df['Date'] = pd.to_datetime(df['Date']).dt.date
 

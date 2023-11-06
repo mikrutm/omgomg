@@ -175,4 +175,3 @@ with tab3:
     
     fig_4 = px.bar(selected_rows,x = "DateTime",y = "Inverted Position",title=f"Godzinowy Trend") 
     st.plotly_chart(fig_4, theme="streamlit")
-    #st.dataframe(df_time)

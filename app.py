@@ -149,12 +149,15 @@ with tab3:
                         hour = (hour - 1) % 24
             df['Time'] = times
             return df
-
+    
         df_with_time_column = add_time_column(df)
-
+    
+        # Konwersja kolumny 'Date' na łańcuch znaków przed dodaniem do 'Time'
+        df_with_time_column['Date'] = df_with_time_column['Date'].dt.strftime('%Y-%m-%d')
+    
         # Kombinacja kolumn 'Date' i 'Time' w nową kolumnę 'DateTime'
         df_with_time_column['DateTime'] = df_with_time_column['Date'] + ' ' + df_with_time_column['Time']
-
+    
         return df_with_time_column
     
     st.subheader('TBA')

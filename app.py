@@ -158,5 +158,6 @@ with tab3:
         return df_with_time_column
     
     st.subheader('TBA')
+    st.dataframe(df)
     df_time = add_datetime_column(df)
     st.dataframe(df_time)

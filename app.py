@@ -163,14 +163,16 @@ with tab3:
 
 
     
-    st.subheader('TBA')
+    st.subheader('Rozkład godzinowy zainteresowania')
 
     txt3 = st.text_area(
         "Trend Godzinowy : "    )
 
     #txt3 = txt3.split(sep=",")
-    st.write(f'Pominięte tagi: {txt3}')
-    df_time[["Inverted Position","Trend","DateTime"]]
+    st.write(f'Obserwujesz godzinowo tag: {txt3}')
+    #df_time[["Inverted Position","Trend","DateTime"]]
     selected_rows = df_time[df_time['Trend'] == str(txt3)]
-    df_s
+    
+    fig_4 = px.bar(selected_rows,x = "DateTime",y = "Inverted Position",title=f"Godzinowy Trend") 
+    st.plotly_chart(fig_4, theme="streamlit")
     #st.dataframe(df_time)

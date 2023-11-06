@@ -135,4 +135,28 @@ with tab2:
     fig_3 = px.bar(merged_df,x = "Date",y = ["Inverted Position_1","Inverted Position_2"],title=f"Porównanie popularności dwóch grup tagów w okresie {start_date} - {end_date}",template="simple_white") 
     st.plotly_chart(fig_3, theme="streamlit")
 with tab3:
+    def add_datetime_column(df):
+        def add_time_column(df):
+            times = []
+            hour = 0
+            interval = 50
+            for i in range(len(df)):
+                times.append(f"{str(hour).zfill(2)}:00")
+                if (i + 1) % interval == 0:
+                    if hour == 0:
+                        hour = 23
+                    else:
+                        hour = (hour - 1) % 24
+            df['Time'] = times
+            return df
+
+        df_with_time_column = add_time_column(df)
+
+        # Kombinacja kolumn 'Date' i 'Time' w nową kolumnę 'DateTime'
+        df_with_time_column['DateTime'] = df_with_time_column['Date'] + ' ' + df_with_time_column['Time']
+
+        return df_with_time_column
+    
     st.subheader('TBA')
+    df_time = add_datetime_column(df)
+    st.dataframe(df_time)

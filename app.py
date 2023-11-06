@@ -152,13 +152,11 @@ with tab3:
     
         df_with_time_column = add_time_column(df)
     
-        # Konwersja kolumny 'Date' na łańcuch znaków przed dodaniem do 'Time'
-        df_with_time_column['Date'] = df_with_time_column['Date'].dt.strftime('%Y-%m-%d')
-    
-        # Kombinacja kolumn 'Date' i 'Time' w nową kolumnę 'DateTime'
-        df_with_time_column['DateTime'] = df_with_time_column['Date'] + ' ' + df_with_time_column['Time']
+        # Połączenie kolumn 'Date' i 'Time' w nową kolumnę 'DateTime'
+        df_with_time_column['DateTime'] = pd.to_datetime(df_with_time_column['Date'] + ' ' + df_with_time_column['Time'])
     
         return df_with_time_column
+    
     
     st.subheader('TBA')
     st.dataframe(df)

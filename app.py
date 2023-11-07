@@ -59,7 +59,7 @@ with st.sidebar:
     start_date = start_date.date()
     end_date = end_date.date()
 
-    st.number_input("Pick a number", 400, 10)
+    st.number_input("Pick a number", 10)
 
 
 

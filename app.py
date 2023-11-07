@@ -58,6 +58,8 @@ with st.sidebar:
     next_year = today.year 
     start_date = start_date.date()
     end_date = end_date.date()
+    st.number_input("Pick a number", 0, 10)
+    st.number_input("Pick a number", 400, 10)
 
 
 

@@ -59,9 +59,9 @@ with st.sidebar:
     start_date = start_date.date()
     end_date = end_date.date()
 
-    st.number_input("Pick a number", 10)
-
-
+    h=st.number_input("Wysokość wykresu", 500)
+    w=st.number_input("Szerokość wykresu", 10)
+    f=st.number_input("Wielkość fontu", 10)
 
     uploaded_file = st.file_uploader("Wgraj Trend CSV z maila")
     if uploaded_file:
@@ -120,10 +120,10 @@ with tab1:
     df_s=df_s[mask]
     st.dataframe(df_s)
 
-    fig = px.bar(df_s,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=1000,height=800, labels=
+    fig = px.bar(df_s,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=w,height=h, labels=
                  {"PopIndex":"Wskaźnik Popularności"
                  },template="simple_white") 
-    st.plotly_chart(fig, theme="streamlit",width=1000,height=800)
+    st.plotly_chart(fig, theme="streamlit",width=w,height=h)
 
 with tab2:
 

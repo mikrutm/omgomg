@@ -60,7 +60,7 @@ with st.sidebar:
     end_date = end_date.date()
 
     h=st.number_input("Wysokość wykresu", 500)
-    w=st.number_input("Szerokość wykresu", 10)
+    w=st.number_input("Szerokość wykresu", 400)
     f=st.number_input("Wielkość fontu", 10)
 
     uploaded_file = st.file_uploader("Wgraj Trend CSV z maila")
@@ -123,6 +123,13 @@ with tab1:
     fig = px.bar(df_s,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=w,height=h, labels=
                  {"PopIndex":"Wskaźnik Popularności"
                  },template="simple_white") 
+    fig.update_layout(
+    font=dict(
+        family="Courier New, monospace",
+        size=f,  # Set the font size here
+        color="Black"
+    )
+)
     st.plotly_chart(fig, theme="streamlit",width=w,height=h)
 
 with tab2:

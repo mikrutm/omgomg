@@ -122,7 +122,7 @@ with tab1:
 
     fig = px.bar(df_s,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=w,height=h, labels=
                  {"PopIndex":"Wskaźnik Popularności"
-                 },template="simple_white") 
+                 },template="simple_white",size = f) 
     fig.update_layout(
     font=dict(
         family="Courier New, monospace",

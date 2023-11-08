@@ -130,7 +130,7 @@ with tab1:
         color="Black"
     )
 )
-    st.plotly_chart(fig, theme="streamlit",width=w,height=h,,size = f)
+    st.plotly_chart(fig, theme="streamlit",width=w,height=h,size = f)
 
 with tab2:
 

@@ -59,8 +59,8 @@ with st.sidebar:
     start_date = start_date.date()
     end_date = end_date.date()
 
-    h=st.number_input("Wysokość wykresu", 500)
-    w=st.number_input("Szerokość wykresu", 400)
+    h=st.number_input("Wysokość wykresu", value=500,,step =25)
+    w=st.number_input("Szerokość wykresu", value=700,step =25)
     f=st.number_input("Wielkość fontu", 10)
 
     uploaded_file = st.file_uploader("Wgraj Trend CSV z maila")

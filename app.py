@@ -122,7 +122,7 @@ with tab1:
 
     fig = px.bar(df_s,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=w,height=h, labels=
                  {"PopIndex":"Wskaźnik Popularności"
-                 },template="simple_white",size = f) 
+                 },template="simple_white") 
     fig.update_layout(
     font=dict(
         family="Courier New, monospace",
@@ -130,7 +130,7 @@ with tab1:
         color="Black"
     )
 )
-    st.plotly_chart(fig, theme="streamlit",width=w,height=h)
+    st.plotly_chart(fig, theme="streamlit",width=w,height=h,,size = f)
 
 with tab2:
 

@@ -124,7 +124,7 @@ with tab1:
                  {"PopIndex":"Wskaźnik Popularności"
                  },template="simple_white") 
     fig.update_xaxes(tickfont=dict(family="CMU Sans Serif Demi Condensed",
-                                 size=f)
+                                 size=f))
 
     st.plotly_chart(fig, theme="streamlit",width=w,height=h,size = f)
 

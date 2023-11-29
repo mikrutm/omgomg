@@ -123,8 +123,8 @@ with tab1:
     fig = px.bar(df_s,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=w,height=h, labels=
                  {"PopIndex":"Wskaźnik Popularności"
                  },template="simple_white") 
-    fig.update_yaxes(tickfont=dict(family="CMU Sans Serif Demi Condensed",
-                                 size=f))
+    fig.update_yaxes(tickfont=dict(family="Overpass",
+                                 size=f,color="black"))
 
     st.plotly_chart(fig, theme="streamlit",width=w,height=h,size = f)
 

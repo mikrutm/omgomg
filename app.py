@@ -174,7 +174,7 @@ with tab2:
     trend2 = st.text_input("Nazwa grupy drugiej",value= "Grupa2")
     #merged_df.rename({'Inverted Position_1': trend1, "Inverted Position_2":trend2}, axis='columns',inplace=True)
 
-    fig_3 = px.bar(merged_df,x = "Date",y = ["Inverted Position_1","Inverted Position_2"],title=f"Porównanie popularności dwóch grup tagów w okresie {start_date} - {end_date}",template="simple_white",labels={'Date': 'Data', 'value':'Wskaźnik Popularności'}) 
+    fig_3 = px.bar(merged_df,x = "Date",y = ["Inverted Position_1","Inverted Position_2"],title=f"Popularność grup tagów w okresie {start_date} - {end_date}",template="simple_white",labels={'Date': 'Data', 'value':'Wskaźnik Popularności'}) 
  
     newnames = {'Inverted Position_1':trend1, 'Inverted Position_2': trend2}
 

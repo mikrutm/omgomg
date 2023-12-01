@@ -172,10 +172,10 @@ with tab2:
     print(merged_df)
     trend1 = st.text_input("Nazwa grupy pierwszej")
     trend2 = st.text_input("Nazwa grupy drugiej")
+    merged_df.rename({'Inverted Position_1': trend1, "Inverted Position_2":trend2}, axis='columns')
 
     fig_3 = px.bar(merged_df,x = "Date",y = [trend1,trend2],title=f"Porównanie popularności dwóch grup tagów w okresie {start_date} - {end_date}",template="simple_white",labels={'x': 'Data', 'y':'Wskaźnik Popularności'}) 
     st.plotly_chart(fig_3, theme="streamlit")
-
 with tab3:
 
 

@@ -170,8 +170,12 @@ with tab2:
     merged_df = df_g2.merge(df_g, on='Date', suffixes=('_2', '_1'))
 
     print(merged_df)
-    fig_3 = px.bar(merged_df,x = "Date",y = ["Inverted Position_1","Inverted Position_2"],title=f"Porównanie popularności dwóch grup tagów w okresie {start_date} - {end_date}",template="simple_white") 
+    trend1 = st.text_input("Nazwa grupy pierwszej")
+    trend2 = st.text_input("Nazwa grupy drugiej")
+
+    fig_3 = px.bar(merged_df,x = "Date",y = [trend1,trend2],title=f"Porównanie popularności dwóch grup tagów w okresie {start_date} - {end_date}",template="simple_white",labels={'x': 'Data', 'y':'Wskaźnik Popularności'}) 
     st.plotly_chart(fig_3, theme="streamlit")
+
 with tab3:
 
 

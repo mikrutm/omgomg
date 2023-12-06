@@ -135,6 +135,7 @@ with tab1:
     
 
     st.plotly_chart(fig, theme="streamlit",width=w,height=h,size = f)
+    st.text('Wykres przedstawia hasła charakterystyczne dla najważniejszych tematów na portalu X w badanym okresie. Miarą wagi poszczególnych haseł jest wskaźnik popularności, który jest obliczany na podstawie częstości występowania hasła i jego pozycji w zestawieniach cząstkowych. Wartość wskaźnika dla poszczególnych haseł jest normalizowana do jedynki względem wartości maksymalnej z danego okresu.')
 
 with tab2:
 

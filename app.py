@@ -125,7 +125,7 @@ with tab1:
                  {"PopIndex":"Wskaźnik Popularności",
                  },template="simple_white") 
     fig.update_yaxes(tickfont=dict(family="Lato",
-                                 size=f,color="black"))
+                                 size=f,color="#092D64"))
     fig.update_xaxes(tickfont=dict(family="Lato",color="black"))
     
     fig.update_layout(

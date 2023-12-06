@@ -126,13 +126,13 @@ with tab1:
                  },template="simple_white") 
     fig.update_yaxes(tickfont=dict(family="Lato",
                                  size=f,color="#092D64"))
-    fig.update_xaxes(tickfont=dict(family="Lato",color="black"))
+    fig.update_xaxes(tickfont=dict(family="Lato",color="#092D64"))
     
     fig.update_layout(
     font_family="Lato",
-    font_color="black",
+    font_color="#092D64",
     title_font_family="Lato",
-    title_font_color="black")
+    title_font_color="#092D64")
     
 
     st.plotly_chart(fig, theme="streamlit",width=w,height=h,size = f)

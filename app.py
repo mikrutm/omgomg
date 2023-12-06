@@ -99,7 +99,7 @@ with st.sidebar:
     
 with tab1:
     st.subheader('Top trends Twitter')
-    st.text('Wykres przedstawia hasła charakterystyczne dla najważniejszych tematów na portalu X w badanym okresie. Miarą wagi poszczególnych haseł jest wskaźnik popularności,\n który jest obliczany na podstawie częstości występowania hasła i jego pozycji w zestawieniach cząstkowych.\n Wartość wskaźnika dla poszczególnych haseł jest normalizowana do jedynki względem wartości maksymalnej z danego okresu.')
+    st.text('Wykres przedstawia hasła charakterystyczne dla najważniejszych tematów na portalu X w badanym okresie.\n Miarą wagi poszczególnych haseł jest wskaźnik popularności, który jest obliczany na \n podstawie częstości występowania hasła i jego pozycji w zestawieniach cząstkowych.\n Wartość wskaźnika dla poszczególnych haseł jest normalizowana do \n jedynki względem wartości maksymalnej z danego okresu.')
 
     top = st.slider('Ile najpopularniejszych tagów :', 5, 40,20)
 

@@ -124,14 +124,14 @@ with tab1:
     fig = px.bar(df_s,x="PopIndex", orientation='h',title=f"Najpopularniejsze hasła na X w okresie {start_date} - {end_date}",width=w,height=h, labels=
                  {"PopIndex":"Wskaźnik Popularności",
                  },template="simple_white") 
-    fig.update_yaxes(tickfont=dict(family="Sans serif",
+    fig.update_yaxes(tickfont=dict(family="Lato",
                                  size=f,color="black"))
-    fig.update_xaxes(tickfont=dict(family="Sans serif",color="black"))
+    fig.update_xaxes(tickfont=dict(family="Lato",color="black"))
     
     fig.update_layout(
-    font_family="Sans serif",
+    font_family="Lato",
     font_color="black",
-    title_font_family="Sans serif",
+    title_font_family="Lato",
     title_font_color="black")
     
 
